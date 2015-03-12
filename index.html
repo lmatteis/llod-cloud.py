@@ -512,7 +512,8 @@ $('svg g.node text').each(function() {
     circleWidth = $circle.attr('r') * 2;
     // make smaller until it fits
     for(var i=10; i > 0; i--) {
-        var width = $this.width()
+        var box = $this.get(0).getBoundingClientRect();
+        var width = box.right-box.left;
         if(width > circleWidth) {
             $this.attr('font-size', i+'px')
             $this.attr('y', $this.attr('y'));
