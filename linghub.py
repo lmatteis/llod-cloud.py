@@ -52,8 +52,9 @@ SELECT ?dist_url WHERE {
 }"""
 
 dataset_query_url = linghub_sparql + quote_plus(dataset_query)
-
-dataset_root = et.parse(urlopen(dataset_query_url))
+request = urllib2.Request(dataset_query_url, headers={"Accept" : "application/rdf+xml"})
+contents = urllib2.urlopen(request).read()
+dataset_root = et.parse(contents)
 
 SR = '{http://www.w3.org/2005/sparql-results#}'
 
